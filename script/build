@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source ${DIR}/common.sh
+
+cd ${PARENT}
+
+for OS in linux darwin; do
+  GOOS=${OS} GOOARCH=amd64 CGO_ENABLE=0 go build -o ${NAME}.${OS} .
+done
