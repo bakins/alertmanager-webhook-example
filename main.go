@@ -32,8 +32,8 @@ type (
 	Alert struct {
 		Labels      map[string]string `json:"labels"`
 		Annotations map[string]string `json:"annotations"`
-		StartsAt    *Timestamp        `json:"startsAt,omitempty"`
-		EndsAt      *Timestamp        `json:"EndsAt,omitempty"`
+		StartsAt    string            `json:"startsAt,omitempty"`
+		EndsAt      string            `json:"EndsAt,omitempty"`
 	}
 
 	// just an example alert store. in a real hook, you would do something useful
@@ -75,6 +75,7 @@ func (s *alertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
 
 func (s *alertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 	enc := json.NewEncoder(w)
+	w.Header().Set("Content-Type", "application/json")
 
 	s.Lock()
 	defer s.Unlock()

@@ -9,6 +9,8 @@ import (
 
 // MarshalJSON emits a timestamp suitable for use in json
 func (t *Timestamp) MarshalJSON() ([]byte, error) {
+
+	fmt.Print()
 	ts := time.Time(*t).Format(time.RFC3339)
 	stamp := fmt.Sprint(ts)
 	return []byte(stamp), nil
@@ -16,9 +18,17 @@ func (t *Timestamp) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON parses a timestamp from json input
 func (t *Timestamp) UnmarshalJSON(b []byte) error {
-	ts, err := time.Parse(time.RFC3339, string(b))
+	s := string(b)
+	s = s[1 : len(s)-1]
+
+	fmt.Println(s)
+
+	ts, err := time.Parse(time.RFC3339Nano, s)
 	if err != nil {
-		return err
+		ts, err = time.Parse("2006-01-02T15:04:05Z07:00", s)
+		if err != nil {
+			return err
+		}
 	}
 	*t = Timestamp(ts)
 	return nil
