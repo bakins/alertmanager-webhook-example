@@ -1,7 +1,7 @@
 alertmanager-webhook-example
 ============================
 
-`alertmanager-webhook-example` is a simple example of a webhook receiver for the [Proemtheus
+`alertmanager-webhook-example` is a simple example of a webhook receiver for the [Prometheus
 Alertmanager](https://prometheus.io/docs/alerting/alertmanager/). It expect to receive
 aleter messages in POST bodies to `/alerts` in JSON in the format described in
 the [receiever webhook docs](https://prometheus.io/docs/alerting/configuration/#webhook-receiver-<webhook_config>)
