@@ -18,7 +18,7 @@ type (
 	// HookMessage is the message we receive from Alertmanager
 	HookMessage struct {
 		Version           string            `json:"version"`
-		GroupKey          int               `json:"groupKey"`
+		GroupKey          string            `json:"groupKey"`
 		Status            string            `json:"status"`
 		Receiver          string            `json:"receiver"`
 		GroupLabels       map[string]string `json:"groupLabels"`
